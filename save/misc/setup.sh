@@ -107,7 +107,12 @@ cp $ROOT/config/Trolltech.conf $USER_FILE
 chown -R $USER_NAME $USER_FILE
 chmod $PERM $USER_FILE
 
+
+USER_DIR=$USER_HOME/.qt
 USER_FILE=$USER_HOME/.qt/qtrc
+mkdir -p $USER_DIR
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
 cp $ROOT/config/qt/qtrc $USER_FILE
 chown -R $USER_NAME $USER_FILE
 chmod $PERM $USER_FILE
