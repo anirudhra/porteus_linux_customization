@@ -2,28 +2,28 @@
 libraryPath=/opt/kde3/lib64/qt3-3.3.8b/plugins:/opt/kde3/lib64/qt3-3.3.8b/bin
 
 [Font Substitutions]
-arial=helvetica^e
-helv=helvetica^e
-tms rmn=times^e
+arial=helvetica
+helv=helvetica
+tms rmn=times
 
 [General]
-GUIEffects=none^e
+GUIEffects=none
 XIMInputStyle=On The Spot
 cursorFlashTime=1000
 doubleClickInterval=400
 embedFonts=true
 font=DejaVu Sans,10,-1,5,50,0,0,0,0,0
 fontPath=\0
-globalStrut=0^e0^e
+globalStrut=00
 resolveSymlinks=true
 style=Compact
 useRtlExtensions=false
 wheelScrollLines=1
 
 [Palette]
-active=#221f1e^e#d6d2d0^e#ffffff^e#eae8e7^e#6b6968^e#8e8b8a^e#221f1e^e#ffffff^e#221f1e^e#ffffff^e#d6d2d0^e#000000^e#000080^e#ffffff^e#0000ff^e#ff00ff^e
-disabled=#7c7877^e#d6d2d0^e#ffffff^e#eae8e7^e#6b6968^e#8e8b8a^e#7c7877^e#ffffff^e#7c7877^e#ffffff^e#d6d2d0^e#000000^e#000080^e#ffffff^e#0000ff^e#ff00ff^e
-inactive=#221f1e^e#d6d2d0^e#ffffff^e#eae8e7^e#6b6968^e#8e8b8a^e#221f1e^e#ffffff^e#221f1e^e#ffffff^e#d6d2d0^e#000000^e#000080^e#ffffff^e#0000ff^e#ff00ff^e
+active=#221f1e#d6d2d0#ffffff#eae8e7#6b6968#8e8b8a#221f1e#ffffff#221f1e#ffffff#d6d2d0#000000#000080#ffffff#0000ff#ff00ff
+disabled=#7c7877#d6d2d0#ffffff#eae8e7#6b6968#8e8b8a#7c7877#ffffff#7c7877#ffffff#d6d2d0#000000#000080#ffffff#0000ff#ff00ff
+inactive=#221f1e#d6d2d0#ffffff#eae8e7#6b6968#8e8b8a#221f1e#ffffff#221f1e#ffffff#d6d2d0#000000#000080#ffffff#0000ff#ff00ff
 
 [customColors]
 0=-1
