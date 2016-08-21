@@ -16,7 +16,7 @@ echo "**************************************************************************
 echo "Connect to WiFi before running this script, else Firewall settings will fail!"
 echo "*****************************************************************************"
 
-MOUNT_USB=/mnt/sdb1
+MOUNT=/mnt/sdb
 ROOT=$MOUNT/porteus/save/misc
 USER_HOME=/home/guest
 PERM=644
@@ -58,27 +58,36 @@ chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 
 USER_DIR=$USER_HOME/.config/fontconfig
-USER_FILE=$USER_HOME/.config/fontconfig/fonts.conf
+USER_FILE=$USER_DIR/fonts.conf
 mkdir -p $USER_DIR
 cp $ROOT/config/fontconfig/fonts.conf $USER_FILE
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 chmod -R $PERM $USER_FILE
 
-USER_FILE=$USER_HOME/.config/lxqt/lxqt.conf
-cp $ROOT/config/lxqt/lxqt.conf $USER_FILE
-chown -R $USER_NAME $USER_FILE
-chmod $PERM $USER_FILE
 
+# LXQT config
+USER_DIR=$USER_HOME/.config/lxqt
+USER_FILE=$USER_DIR/lxqt.conf
+mkdir -p $USER_DIR
+cp $ROOT/config/lxqt/lxqt.conf $USER_FILE
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+chmod -R $PERM $USER_FILE
+
+#directory created above
 USER_FILE=$USER_HOME/.config/lxqt/panel.conf
 cp $ROOT/config/lxqt/panel.conf $USER_FILE
 chown -R $USER_NAME $USER_FILE
 chmod $PERM $USER_FILE
 
-USER_FILE=$USER_HOME/.config/lxterminal/lxterminal.conf
+USER_DIR=$USER_HOME/.config/lxterminal
+USER_FILE=$USER_DIR/lxterminal.conf
+mkdir -p $USER_DIR
 cp $ROOT/config/lxterminal/lxterminal.conf $USER_FILE
-chown -R $USER_NAME $USER_FILE
-chmod $PERM $USER_FILE
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+chmod -R $PERM $USER_FILE
 
 USER_FILE=$USER_HOME/.config/leafpad/leafpadrc
 USER_DIR=$USER_HOME/.config/leafpad
@@ -88,34 +97,52 @@ chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 chmod -R $PERM $USER_FILE
 
-USER_FILE=$USER_HOME/.config/openbox/rc.xml
 USER_DIR=$USER_HOME/.config/openbox
+USER_FILE=$USER_DIR/rc.xml
 mkdir -p $USER_DIR
 cp $ROOT/config/openbox/rc.xml $USER_FILE
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 chmod -R $PERM $USER_FILE
 
-
-USER_FILE=$USER_HOME/.config/pcmanfm-qt/lxqt/settings.conf
+USER_DIR=$USER_HOME/.config/pcmanfm-qt/lxqt
+USER_FILE=$USER_DIR/settings.conf
+mkdir -p $USER_DIR
 cp $ROOT/config/pcmanfm-qt/lxqt/settings.conf $USER_FILE
-chown -R $USER_NAME $USER_FILE
-chmod $PERM $USER_FILE
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+chmod -R $PERM $USER_FILE
 
 USER_FILE=$USER_HOME/.config/Trolltech.conf
 cp $ROOT/config/Trolltech.conf $USER_FILE
 chown -R $USER_NAME $USER_FILE
 chmod $PERM $USER_FILE
 
-
 USER_DIR=$USER_HOME/.qt
-USER_FILE=$USER_HOME/.qt/qtrc
+USER_FILE=$USER_DIR/qtrc
 mkdir -p $USER_DIR
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 cp $ROOT/config/qt/qtrc $USER_FILE
 chown -R $USER_NAME $USER_FILE
 chmod $PERM $USER_FILE
+
+
+# XFCE
+USER_DIR=$USER_HOME/.config/xfce4
+USER_FILE=$ROOT/config/xfce.tar.gz
+mkdir -p $USER_DIR
+tar -xzf $USER_FILE -C $USER_DIR
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+
+USER_DIR=$USER_HOME/.config/Mousepad
+USER_FILE=$ROOT/config/mousepad.tar.gz
+mkdir -p $USER_DIR
+tar -xzf $USER_FILE -C $USER_DIR
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+
 
 # Remove clipboard etc. from autostarting
 rm -rf $USER_HOME/.config/autostart/*
@@ -143,6 +170,7 @@ echo "Netowrk settings done!"
 echo
 
 MOUNT_HDD=/mnt/sda1
+
 if [ -d "$MOUNT_HDD" ]; then
   umount $MOUNT_HDD
 fi
