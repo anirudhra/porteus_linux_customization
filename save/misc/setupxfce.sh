@@ -57,6 +57,12 @@ tar -xzf $USER_FILE -C $USER_DIR
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 
+USER_DIR=$USER_HOME/.icons
+USER_FILE=$ROOT/config/icons_alt.tar.gz
+tar -xzf $USER_FILE -C $USER_DIR
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+
 USER_DIR=$USER_HOME/.config/fontconfig
 USER_FILE=$USER_DIR/fonts.conf
 mkdir -p $USER_DIR
