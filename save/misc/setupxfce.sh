@@ -2,6 +2,7 @@
 
 FILE="/tmp/out.$$"
 GREP="/bin/grep"
+TMP_DIR="/tmp"
 
 # Make sure only root can run our script
 if [[ $EUID -ne 0 ]]; then
@@ -43,6 +44,7 @@ USER_FILE=/usr/share/applications/google-chrome.desktop
 cp $ROOT/config/google-chrome.desktop $USER_FILE
 chmod -R $PERM $USER_FILE
 
+# xfce/gtk/openbox themes
 USER_DIR=$USER_HOME/.themes
 USER_FILE=$ROOT/config/themes.tar.gz
 mkdir -p $USER_DIR
@@ -50,6 +52,15 @@ tar -xzf $USER_FILE -C $USER_DIR
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 
+#Cursors
+USER_DIR=$USER_HOME/.icons
+USER_FILE=$ROOT/config/cursors.tar.gz
+mkdir -p $USER_DIR
+tar -xzf $USER_FILE -C $USER_DIR
+chown -R $USER_NAME $USER_DIR
+chmod -R $PERM_DIR $USER_DIR
+
+#icons
 USER_DIR=$USER_HOME/.icons
 USER_FILE=$ROOT/config/icons.tar.gz
 mkdir -p $USER_DIR
@@ -57,11 +68,6 @@ tar -xzf $USER_FILE -C $USER_DIR
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 
-USER_DIR=$USER_HOME/.icons
-USER_FILE=$ROOT/config/icons_alt.tar.gz
-tar -xzf $USER_FILE -C $USER_DIR
-chown -R $USER_NAME $USER_DIR
-chmod -R $PERM_DIR $USER_DIR
 
 USER_DIR=$USER_HOME/.config/fontconfig
 USER_FILE=$USER_DIR/fonts.conf
@@ -133,8 +139,7 @@ cp $ROOT/config/qt/qtrc $USER_FILE
 chown -R $USER_NAME $USER_FILE
 chmod $PERM $USER_FILE
 
-
-# XFCE
+# XFCE specific
 USER_DIR=$USER_HOME/.config/xfce4
 USER_FILE=$ROOT/config/xfce.tar.gz
 mkdir -p $USER_DIR
@@ -149,6 +154,20 @@ tar -xzf $USER_FILE -C $USER_DIR
 chown -R $USER_NAME $USER_DIR
 chmod -R $PERM_DIR $USER_DIR
 
+USER_DIR=$ROOT/config
+TMP_ICON_DIR=$TMP_DIR/icons
+mkdir -p $TMP_ICON_DIR
+USER_FILE=$USER_DIR/Faenza.tar.gz
+cp $USER_FILE $TMP_ICON_DIR
+USER_FILE=$USER_DIR/Faenza-Dark.tar.gz
+cp $USER_FILE $TMP_ICON_DIR
+INSTALL_FILE=install_icons.sh
+USER_FILE=$USER_DIR/$INSTALL_FILE
+cp $USER_FILE $TMP_ICON_DIR
+pushd $TMP_ICON_DIR
+./$INSTALL_FILE
+popd
+rm -rf $TMP_ICON_DIR
 
 # Remove clipboard etc. from autostarting
 rm -rf $USER_HOME/.config/autostart/*
@@ -175,11 +194,12 @@ chmod a+x /etc/rc.d/rc.FireWall
 echo "Netowrk settings done!"
 echo
 
-MOUNT_HDD=/mnt/sda1
-
-if [ -d "$MOUNT_HDD" ]; then
-  umount $MOUNT_HDD
-fi
+#unmount HDDs
+for MOUNT_HDD in /mnt/sda1 /mnt/sda; do
+	if [ -d "$MOUNT_HDD" ]; then
+	  umount $MOUNT_HDD
+	fi
+done
 
 # need to logout and log back in for changes to be effective
 echo "All done! Please logout and log back in as 'guest' for changes to be effective"
