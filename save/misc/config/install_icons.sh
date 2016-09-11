@@ -1,7 +1,7 @@
 #!/bin/bash
 # Installation script for Faenza icon themes
 # Written by Tiheum (matthieu.james@gmail.com)
-# Modified by Anirudh Acharya
+# Modified by Anirudh Acharya for Porteus installation
 
 ROOT_UID=0
 
@@ -10,6 +10,8 @@ cd $DIR
 
 tar xf Faenza.tar.gz 2>/dev/null
 tar xf Faenza-Dark.tar.gz 2>/dev/null
+tar xf Faenza-Mint.tar.gz 2>/dev/null
+tar xf Faenza-Black.tar.gz 2>/dev/null
 
 echo
 distro="${input:-$distro}"
@@ -33,6 +35,8 @@ done
 rm -Rf /usr/share/icons/Faenza 2>/dev/null; rm -Rf /usr/share/icons/Faenza-Dark 2>/dev/null; rm -Rf /usr/share/icons/Faenza-Darker 2>/dev/null; rm -Rf /usr/share/icons/Faenza-Darkest 2>/dev/null; rm -Rf /usr/share/icons/Faenza-Ambiance 2>/dev/null; rm -Rf /usr/share/icons/Faenza-Radiance 2>/dev/null
 cp -R ./Faenza/ /usr/share/icons/
 cp -R ./Faenza-Dark/ /usr/share/icons/
+cp -R ./Faenza-Black/ /usr/share/icons/
+cp -R ./Faenza-Mint/ /usr/share/icons/
 install_dir=/usr/share/icons/
 
 current_dir=$(pwd)
