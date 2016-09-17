@@ -1,0 +1,17 @@
+#!bin/sh
+# /etc/rc.d/rc.local: Local system initialization script.
+#
+# Put any local startup commands in here. Also, if you have
+# anything that needs to be run at shutdown time you can
+# make an /etc/rc.d/rc.local_shutdown script and put those
+# commands in there.
+
+#wpa_supplicant -Dwext -iwlan0 -c /etc/wpa_supplicant.conf > /dev/null 2>&1 &
+setupxfce.sh
+/etc/rc.d/rc.FireWall start
+umount /dev/sdb
+echo #######################################
+echo It is now safe to remove the USB Media
+echo #######################################
+echo
+
